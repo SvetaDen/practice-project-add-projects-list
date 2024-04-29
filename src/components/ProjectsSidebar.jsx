@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from "./Button";
 
-const ProjectsSidebar = ({onStartAddProject,projects}) => {
+const ProjectsSidebar = ({onStartAddProject, projects, onSelectProject, selectedProjectId}) => {
 
 
     return (
@@ -13,12 +13,20 @@ const ProjectsSidebar = ({onStartAddProject,projects}) => {
                 </Button>
             </div>
             <ul className='mt-8'>
-                {projects.map(project => <li key={project.id}>
-                    <button
-                        className='w-full text-left px-2 py-2 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800'>
-                        {project.title}
-                    </button>
-                </li>)}
+                {projects.map(project =>{
+                    let cssClasses ='w-full text-left px-2 py-2 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800';
+                    if(project.id=== selectedProjectId){
+                        cssClasses += ' bg-stone-800 text-stone-200'
+                    }else{
+                        cssClasses += ' text-stone-400'
+                    }
+                    return (<li key={project.id}>
+                        <button onClick={()=>onSelectProject(project.id)}
+                                className={cssClasses}>
+                            {project.title}
+                        </button>
+                    </li>);
+                    })}
             </ul>
         </aside>
     );
