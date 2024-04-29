@@ -52,7 +52,7 @@ function App() {
         });
     }
 
-    const selectedProject = projectsState.projects.find(project=>project.id === projectsState.selectedProjectId)
+    const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
 
     let content = <SelectedProject project={selectedProject}/>;
 
